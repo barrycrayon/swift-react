@@ -66,8 +66,8 @@ class UserProfileViewController: UIViewController {
     var presenter: UserPresenter!
     let user = User(
         id: 1,
-        name: "Jon Cotton",
-        emailAddress: "joncotton@icloud.com"
+        name: "Homer Simpson",
+        emailAddress: "homer@burnspower.com"
     )
     
 //: These would normally be IBOutlets and init'd from the storyboard
