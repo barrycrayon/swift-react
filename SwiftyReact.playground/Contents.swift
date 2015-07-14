@@ -88,7 +88,7 @@ class UserProfileViewController: UIViewController {
         self.render(self.presenter)
     }
     
-//: Any UI that can change based on state is set in here, this should be the only method you need to call to set up or change your UI
+//: Any UI that can change based on state is set in here
     func render(userPresenter: UserPresenter) {
         // set the label values
         self.userIdLabel.text = userPresenter.id
@@ -128,8 +128,17 @@ let vc = UserProfileViewController()
 XCPShowView("React Demo", vc.view)
 
 //: Button press isn't working, so simulate the button press here by uncommenting the line below
-//vc.someViewThingHappend()
+vc.someViewThingHappend()
 
+//: Now you can easily test the presenter
+let testUser = User(id: 99, name: "Test User", emailAddress: "user@test.com")
+let testableUserPresenter = UserPresenter(user: testUser)
+assert(testableUserPresenter.id == "UserId: \(99)")
+assert(testableUserPresenter.name == "Name: Test User")
+assert(testableUserPresenter.emailAddress == "Email: user@test.com")
+assert(testableUserPresenter.favouriteColour == UIColor.redColor())
+
+//: The main thing that's being missed from testing is the render method, which is quite important as it's where you wire the presenter into the views, but that's all the render method should be, so testing it would just end up being a lot of mocks of UIView sub classes that you verify have certain methods called upon them.
 
 
 
